@@ -1,0 +1,18 @@
+{
+  "name": "frp",
+  "type": "module",
+  "version": "0.0.0-alpha.1",
+  "description": "Fetch > resolve > parse.",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dddominikk/frp"
+  },
+  "author": {
+    "name": "Dominik Bošnjak",
+    "email": "bosnjakinimod@gmail.com"
+  },
+  "scripts": {
+    "start": "node --experimental-strip-types src/index.ts"
+  }
+}

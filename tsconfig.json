@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "resolvePackageJsonExports": true,
+    "resolvePackageJsonImports": true,
+    "plugins": [
+      /** @see [openlayers/jsdoc-plugin-typescript](https://github.com/openlayers/jsdoc-plugin-typescript) */
+      {
+        "name": "jsdoc-plugin-typescript"
+      }
+    ],
+    "noEmit": true,
+    "strict": true,
+    "verbatimModuleSyntax": true
+  },
+  "typeAcquisition": {
+    "enable": true
+  }
+}
