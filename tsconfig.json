@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
+    "declaration": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "allowImportingTsExtensions": true,
@@ -10,19 +11,21 @@
     "resolvePackageJsonImports": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+
     "plugins": [
       /** @see [openlayers/jsdoc-plugin-typescript](https://github.com/openlayers/jsdoc-plugin-typescript) */
       {
         "name": "jsdoc-plugin-typescript"
-      },
-      {
-        "transform": "ts-transformer-imports"
       },
     ],
     "noEmit": true,
     "strict": true,
     "verbatimModuleSyntax": true,
   },
+  "include": [
+    "src/**/*",
+    "node_modules/ttypescript/**/*"
+  ],
   "typeAcquisition": {
     "enable": true
   },

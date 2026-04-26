@@ -14,7 +14,7 @@
     "./node": "./src/node.ts",
     "./core": "./src/index.ts"
   },
-  "private": true,
+  "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dddominikk/frp"
