@@ -1,8 +1,11 @@
 node_modules/
+
 .env
+
+build/
+.build/
 
 dist/
 .dist/
 
-build/
-.build/
+.TODO.md

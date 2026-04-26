@@ -11,6 +11,9 @@
       /** @see [openlayers/jsdoc-plugin-typescript](https://github.com/openlayers/jsdoc-plugin-typescript) */
       {
         "name": "jsdoc-plugin-typescript"
+      },
+      {
+        "transform": "ts-transformer-imports"
       }
     ],
     "noEmit": true,

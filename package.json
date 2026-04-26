@@ -3,6 +3,8 @@
   "type": "module",
   "version": "0.0.0-alpha.1",
   "description": "Fetch > resolve > parse.",
+  "main": "src/index.ts",
+  "browser": "",
   "private": true,
   "repository": {
     "type": "git",
@@ -14,5 +16,13 @@
   },
   "scripts": {
     "start": "node --experimental-strip-types src/index.ts"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "ttypescript": "^1.5.15"
+  },
+  "engines": {
+    "node": ">=22.18.0"
   }
+
 }
