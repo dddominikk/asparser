@@ -7,25 +7,25 @@
     "allowImportingTsExtensions": true,
     "allowArbitraryExtensions": true,
     "resolveJsonModule": true,
+    "declarationDir": "",
     "resolvePackageJsonExports": true,
     "resolvePackageJsonImports": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-
     "plugins": [
       /** @see [openlayers/jsdoc-plugin-typescript](https://github.com/openlayers/jsdoc-plugin-typescript) */
       {
         "name": "jsdoc-plugin-typescript"
       },
     ],
+
+    "emitDeclarationOnly": true,
     "noEmit": true,
     "strict": true,
     "verbatimModuleSyntax": true,
+    "importHelpers": null
   },
-  "include": [
-    "src/**/*",
-    "node_modules/ttypescript/**/*"
-  ],
+ 
   "typeAcquisition": {
     "enable": true
   },

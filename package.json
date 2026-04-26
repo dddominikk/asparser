@@ -21,10 +21,20 @@
   },
   "author": {
     "name": "Dominik Bošnjak",
-    "email": "bosnjakinimod@gmail.com"
+    "email": "bosnjakinimod@gmail.com",
+  },
+  "publisher": "dddb",
+  "publishConfig": {},
+  "devEngines": {
+    "packageManager": {
+      "name": "node",
+      "version": ">=22.18.0",
+      "onFail": "warn"
+    }
   },
   "scripts": {
-    "start": "node --experimental-strip-types src/node.ts"
+    "start": "node --experimental-strip-types src/node.ts",
+    "remoteParser": "node src/core/ "
   },
   "devDependencies": {
     "tsup": "^8.5.1",

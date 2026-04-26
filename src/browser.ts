@@ -1,13 +1,11 @@
-import { createFrp }            from './index.ts';
-import { parse as parseJson }   from './parse/object/json.ts';
-import { parse as parseText }   from './parse/string/text.ts';
-import { parse as parseBinary } from './parse/buffer/binary.ts';
+import { createFrp } from './index.ts';
+import { json }       from './parse/json/index.ts';
+import { jsonl }      from './parse/jsonl/index.ts';
+import { text }       from './parse/text/index.ts';
+import { binary }     from './parse/binary/index.ts';
 
 const frp = createFrp();
+[json, jsonl, text, binary].forEach(p => frp.use(p));
 
-frp.register('object', { processors: [], parser: parseJson });
-frp.register('string', { processors: [], parser: parseText });
-frp.register('buffer', { processors: [], parser: parseBinary });
-
-export const { readRemote, register, deregister } = frp;
+export const { readRemote, use, remove } = frp;
 export default frp;

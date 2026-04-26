@@ -1,15 +1,21 @@
-import { createFrp }             from './index.ts';
-import { parse as parseJson }    from './parse/object/json.ts';
-import { parse as parseText }    from './parse/string/text.ts';
-import { parse as parseBinary }  from './parse/buffer/binary.ts';
-import { stripComments }         from './process/stripComments.ts';
+import { readdirSync }    from 'node:fs';
+import { fileURLToPath }  from 'node:url';
+import { join, dirname }  from 'node:path';
+import { createFrp }      from './index.ts';
+import type { Plugin }    from './types.ts';
 
 const frp = createFrp();
 
-// stripComments is a no-op on plain JSON; enables .jsonc / JSON-with-comments support
-frp.register('object', { processors: [stripComments], parser: parseJson });
-frp.register('string', { processors: [],              parser: parseText });
-frp.register('buffer', { processors: [],              parser: parseBinary });
+const parseDir = join(dirname(fileURLToPath(import.meta.url)), 'parse');
+const dirs     = readdirSync(parseDir, { withFileTypes: true })
+  .filter(d => d.isDirectory())
+  .map(d => d.name);
 
-export const { readRemote, register, deregister } = frp;
+const plugins = await Promise.all(
+  dirs.map(d => import(`./parse/${d}/index.ts`).then((m: { default: Plugin }) => m.default))
+);
+
+plugins.forEach(p => frp.use(p));
+
+export const { readRemote, use, remove } = frp;
 export default frp;

@@ -1,17 +1,8 @@
-import { readRemote } from './core/pipeline.ts';
-import { register, deregister } from './core/registry.ts';
+import { readRemote }  from './core/pipeline.ts';
+import { use, remove } from './core/registry.ts';
 
 export function createFrp() {
-  return { readRemote, register, deregister };
+  return { readRemote, use, remove };
 }
 
-export type {
-  Ctx,
-  MediaDescriptor,
-  MediaType,
-  Entry,
-  Inferrer,
-  Processor,
-  Parser,
-  ParserResult,
-} from './types.ts';
+export type { Ctx, MediaType, Plugin, Processor, Parser, ParserResult } from './types.ts';

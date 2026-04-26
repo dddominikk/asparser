@@ -1,6 +1,21 @@
-import { buildCtx } from './ctx.ts';
-import { resolve }   from './registry.ts';
-import type { Ctx }  from '../types.ts';
+import { resolve } from './registry.ts';
+import type { Ctx } from '../types.ts';
+
+function buildCtx(response: Response, url: string): Ctx {
+  const headers  = Object.fromEntries(response.headers.entries());
+  const urlObj   = new URL(url);
+  const rawCt    = headers['content-type'] ?? '';
+  const mime     = rawCt.split(';')[0].trim();
+  return {
+    url:      urlObj,
+    headers,
+    mime,
+    ext:      urlObj.pathname.match(/\.[^./]+$/)?.[0] ?? '',
+    status:   response.status,
+    ok:       response.ok,
+    response,
+  };
+}
 
 export class ResponseError extends Error {
   constructor(public readonly ctx: Ctx) {
@@ -10,7 +25,7 @@ export class ResponseError extends Error {
 
 export class NoHandlerError extends Error {
   constructor(public readonly ctx: Ctx) {
-    super(`No entry for ${ctx.url.href} (${ctx.media?.mime ?? 'unknown'})`);
+    super(`No plugin matched for ${ctx.url.href} (mime: ${ctx.mime || 'none'}, ext: ${ctx.ext || 'none'})`);
   }
 }
 
@@ -23,14 +38,14 @@ export async function readRemote(
 
   if (!ctx.ok) throw new ResponseError(ctx);
 
-  const entry = ctx.media ? resolve(ctx.media.type) : undefined;
-  if (!entry) throw new NoHandlerError(ctx);
+  const plugin = resolve(ctx);
+  if (!plugin) throw new NoHandlerError(ctx);
 
-  if (ctx.media!.type === 'buffer') {
-    return (entry.parser as (r: Response) => Promise<ArrayBuffer>)(response);
+  if (plugin.mediaType === 'buffer') {
+    return (plugin.parser as (r: Response) => Promise<ArrayBuffer>)(response);
   }
 
   let text = await response.text();
-  for (const proc of entry.processors) text = proc(text);
-  return (entry.parser as (t: string) => unknown)(text);
+  for (const proc of plugin.processors) text = proc(text);
+  return (plugin.parser as (t: string) => unknown)(text);
 }
