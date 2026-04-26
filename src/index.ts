@@ -6,3 +6,5 @@ export function createFrp() {
 }
 
 export type { Ctx, MediaType, Plugin, Processor, Parser, ParserResult } from './types.ts';
+export { PathResolver } from './core/PathResolver.ts';
+export type { PathInput, ResolvedPath, ResolveFn, TransformFn } from './core/PathResolver.ts';

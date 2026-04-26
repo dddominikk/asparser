@@ -6,8 +6,9 @@
     "moduleResolution": "NodeNext",
     "allowImportingTsExtensions": true,
     "allowArbitraryExtensions": true,
+    "rootDir": "src",
+    "declarationDir": "dist/",
     "resolveJsonModule": true,
-    "declarationDir": "",
     "resolvePackageJsonExports": true,
     "resolvePackageJsonImports": true,
     "skipLibCheck": true,
@@ -18,15 +19,12 @@
         "name": "jsdoc-plugin-typescript"
       },
     ],
-
     "emitDeclarationOnly": true,
-    "noEmit": true,
     "strict": true,
-    "verbatimModuleSyntax": true,
-    "importHelpers": null
+    "verbatimModuleSyntax": true
   },
- 
+  "include": ["src"],
   "typeAcquisition": {
     "enable": true
-  },
+  }
 }
