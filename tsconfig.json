@@ -4,9 +4,12 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "allowImportingTsExtensions": true,
+    "allowArbitraryExtensions": true,
     "resolveJsonModule": true,
     "resolvePackageJsonExports": true,
     "resolvePackageJsonImports": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
     "plugins": [
       /** @see [openlayers/jsdoc-plugin-typescript](https://github.com/openlayers/jsdoc-plugin-typescript) */
       {
@@ -18,9 +21,9 @@
     ],
     "noEmit": true,
     "strict": true,
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
   },
   "typeAcquisition": {
     "enable": true
-  }
+  },
 }
