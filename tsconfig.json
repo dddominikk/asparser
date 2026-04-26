@@ -17,7 +17,7 @@
       },
       {
         "transform": "ts-transformer-imports"
-      }
+      },
     ],
     "noEmit": true,
     "strict": true,

@@ -1,10 +1,19 @@
 {
   "name": "frp",
-  "type": "module",
-  "version": "0.0.0-alpha.1",
   "description": "Fetch > resolve > parse.",
-  "main": "src/index.ts",
-  "browser": "",
+  "type": "module",
+  "version": "0.1.0",
+  "main": "./src/node.ts",
+  "browser": "./src/browser.ts",
+  "exports": {
+    ".": {
+      "browser": "./src/browser.ts",
+      "default": "./src/node.ts"
+    },
+    "./browser": "./src/browser.ts",
+    "./node": "./src/node.ts",
+    "./core": "./src/index.ts"
+  },
   "private": true,
   "repository": {
     "type": "git",
@@ -15,7 +24,7 @@
     "email": "bosnjakinimod@gmail.com"
   },
   "scripts": {
-    "start": "node --experimental-strip-types src/index.ts"
+    "start": "node --experimental-strip-types src/node.ts"
   },
   "devDependencies": {
     "tsup": "^8.5.1",
@@ -24,5 +33,4 @@
   "engines": {
     "node": ">=22.18.0"
   }
-
 }
